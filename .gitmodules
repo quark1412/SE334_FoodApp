@@ -1,0 +1,6 @@
+[submodule "customer"]
+	path = customer
+	url = https://github.com/quark1412/FoodApp.git
+[submodule "driver"]
+	path = driver
+	url = https://github.com/quark1412/FoodApp-Driver.git
