@@ -30,6 +30,14 @@ io.on("connection", (socket) => {
     io.emit(`driver_location_${data.orderId}`, data);
   });
 
+  // Handle route updates from driver
+  socket.on("route_update", (data) => {
+    console.log("Route update received:", data);
+
+    // Broadcast route to all clients subscribed to this order's channel
+    io.emit(`route_${data.orderId}`, data);
+  });
+
   socket.on("disconnect", () => {
     console.log("A client disconnected:", socket.id);
   });
