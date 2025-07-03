@@ -3,17 +3,14 @@ const http = require("http");
 const { Server } = require("socket.io");
 const cors = require("cors");
 
-// Create express app
 const app = express();
 app.use(cors());
 
-// Create HTTP server
 const server = http.createServer(app);
 
-// Create socket.io server
 const io = new Server(server, {
   cors: {
-    origin: "*", // You might want to restrict this in production
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
@@ -43,12 +40,10 @@ io.on("connection", (socket) => {
   });
 });
 
-// Simple route to check server status
 app.get("/", (req, res) => {
   res.send("Location tracking WebSocket server is running");
 });
 
-// Start the server
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
   console.log(`WebSocket server running on port ${PORT}`);
